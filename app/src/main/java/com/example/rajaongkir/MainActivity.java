@@ -15,10 +15,17 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.rajaongkir.api.RegisterAPI;
+import com.example.rajaongkir.api.ServerAPI;
 import com.example.rajaongkir.model.Kota;
 import com.example.rajaongkir.model.Provinsi;
 
 import java.util.ArrayList;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
     Provinsi provinsi;
@@ -81,6 +88,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void load_provinsi(){
-        
+        ServerAPI urlAPI = new ServerAPI();
+        String URL = urlAPI.Base_URL;
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RegisterAPI api = retrofit.create(RegisterAPI.class);
+        Call<ResponseBody> call = api.get_provinsi();
+        Log.i("info load", "Persiapan Masuk Enqueue");
     }
 }

@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     Spinner spinprovinsi, spinKota;
     ArrayList<String> province_name = new ArrayList<>();
     ArrayList<String> city_name = new ArrayList<>();
+    ArrayList<String> type = new ArrayList<>();
     ArrayList<Integer> province_id = new ArrayList<>();
     ArrayList<Integer> city_id = new ArrayList<>();
     int id_kota_tujuan;
@@ -114,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.i("info Respon 002",json.get("rajaongkir").toString());
                     provinsi = new Provinsi();
                     JSONArray jsonarr = new JSONArray();
-                    jsonarr = json.getJSONObject("rajaongkir").getJSONArray("result");
+                    jsonarr = json.getJSONObject("rajaongkir").getJSONArray("results");
                     for(int i = 0;i<jsonarr.length();i++){
                         Log.i("info Respon 003",jsonarr.toString());
                         provinsi.province_id=Integer.parseInt(jsonarr.getJSONObject(i)
@@ -161,15 +162,17 @@ public class MainActivity extends AppCompatActivity {
                     kota = new Kota();
                     city_name.clear();
                     city_id.clear();
+                    type.clear();
 
                     JSONArray jsonarr = new JSONArray();
-                    jsonarr = json.getJSONObject("rajaongkir").getJSONArray("result");
+                    jsonarr = json.getJSONObject("rajaongkir").getJSONArray("results");
 
                     for(int i=0;i<jsonarr.length();i++){
                         kota.city_id=Integer.parseInt(jsonarr.getJSONObject(i).get("city_id").toString());
                         kota.city_name=jsonarr.getJSONObject(i).get("city_name").toString();
+                        kota.type=jsonarr.getJSONObject(i).get("type").toString();
                         Log.i("info add array ", kota.get_city_name());
-                        city_name.add(kota.get_city_name());
+                        city_name.add(kota.get_type()+ " " + kota.get_city_name());
                         city_id.add(kota.get_city_id());
                     }
 
@@ -220,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
                             .getJSONArray("costs")
                             .getJSONObject(1)
                             .getJSONArray("cost");
-                    tvongkir.setText(""+cost.getJSONObject(0).get("value"));
+                    tvongkir.setText("Rp"+cost.getJSONObject(0).get("value"));
                     tvlamakirim.setText(cost.getJSONObject(0).get("etd").toString()+" Hari");
                     pd.dismiss();
                 }catch (Exception e){

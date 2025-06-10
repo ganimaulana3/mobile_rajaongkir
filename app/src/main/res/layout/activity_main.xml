@@ -5,6 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="30dp"
+    android:paddingHorizontal="10dp"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -40,7 +42,7 @@
         android:id="@+id/btnCekOngkir"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="Cek Ongkir" />
 
     <TextView
         android:id="@+id/textView3"

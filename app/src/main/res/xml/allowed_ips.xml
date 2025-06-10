@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="allowed_ips">
-        <item>192.168.8.21</item>
+        <item>192.168.1.34</item>
         <item>10.0.2.2</item>
         <!-- Tambahkan IP yang diperbolehkan -->
     </string-array>
